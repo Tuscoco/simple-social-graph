@@ -11,10 +11,10 @@ import com.simplesocialgraph.models.Relation;
 
 public class RelationDAO {
     
-    private String FILE_PATH = "data/relations.json";
-    private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private static String FILE_PATH = "data/relations.json";
+    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public void saveRelationsData(List<Relation> relations){
+    public static void saveRelationsData(List<Relation> relations){
 
         try(FileWriter fileWriter = new FileWriter(FILE_PATH)){
 
@@ -26,11 +26,11 @@ public class RelationDAO {
 
     }
 
-    public List<Relation> getRelationsData(){
+    public static List<Relation> getRelationsData(){
 
         try(FileReader fileReader = new FileReader(FILE_PATH)){
 
-            Relation[] relations = gson.fromJson(FILE_PATH, Relation[].class);
+            Relation[] relations = gson.fromJson(fileReader, Relation[].class);
 
             if(relations != null){
                 return new ArrayList<>(List.of(relations));

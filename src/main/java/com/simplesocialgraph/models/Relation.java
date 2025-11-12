@@ -5,6 +5,11 @@ public class Relation {
     private int origin;
     private int destination;
 
+    public Relation(int origin, int destination){
+        this.origin = origin;
+        this.destination = destination;
+    }
+
     public int getOrigin(){
         return origin;
     }
