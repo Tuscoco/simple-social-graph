@@ -23,21 +23,31 @@ public class MainController {
 
         myUser = userService.getUserData(id);
 
-        Menus.userMenu(myUser);
-        Menus.homeMenu();
-        int option = scan.nextInt();
-        scan.nextLine();
+        int option = -1;
+        Menus.clear();
+        do{
 
-        if(option == 0){
-            return;
-        }else if(option == 1){
-            
-            Set<Integer> friends = graphService.getFriends(id);
+            Menus.userMenu(myUser);
+            Menus.homeMenu();
+            option = scan.nextInt();
+            scan.nextLine();
+            Menus.clear();
 
-            for(Integer friendId : friends){
-                System.out.println(userService.getUserData(friendId).getName());
+            if(option == 0){
+                break;
+            }else if(option == 1){
+                
+                Set<User> friends = userService.getUserData(graphService.getFriends(id));
+                Menus.friendsMenus(friends);
+
+            }else if(option == 2){
+
+                Set<User> recomendation = userService.getUserData(graphService.getRecomendation(id));
+                Menus.recomendationMenu(recomendation);
+
             }
-        }
+
+        }while(option != 0);
 
         scan.close();
 

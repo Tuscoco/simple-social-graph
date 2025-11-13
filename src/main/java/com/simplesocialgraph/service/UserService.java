@@ -1,6 +1,8 @@
 package com.simplesocialgraph.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.simplesocialgraph.dao.UserDAO;
 import com.simplesocialgraph.models.User;
@@ -28,6 +30,22 @@ public class UserService {
         }
 
         return null;
+    }
+
+    public Set<User> getUserData(Set<Integer> ids){
+
+        Set<User> users = new HashSet<>();
+        for(User user : usersData){
+
+            for(Integer id : ids){
+                if(user.getId() == id){
+                    users.add(user);
+                }
+            }
+
+        }
+
+        return users;
     }
 
     public void saveUsersData(){

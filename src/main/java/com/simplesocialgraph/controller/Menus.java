@@ -1,5 +1,7 @@
 package com.simplesocialgraph.controller;
 
+import java.util.Set;
+
 import com.simplesocialgraph.models.User;
 
 public class Menus {
@@ -30,6 +32,26 @@ public class Menus {
         System.out.println(END);
         System.out.print("👉 Choose an option: ");
 
+    }
+
+    public static void clear(){
+        System.out.println("\n\n\n\n\n\n\n");
+    }
+
+    public static void friendsMenus(Set<User> friends){
+        System.out.println(LINE);
+        for(User friend : friends){
+            System.out.println("║ " + friend.getName());
+        }
+        System.out.println(END);
+    }
+
+    public static void recomendationMenu(Set<User> recomendation){
+        System.out.println(LINE);
+        for(User recomend : recomendation){
+            System.out.println("║ " + recomend.getName());
+        }
+        System.out.println(END);
     }
 
 }

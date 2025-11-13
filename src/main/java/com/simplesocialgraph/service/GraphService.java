@@ -29,6 +29,25 @@ public class GraphService {
         return graph.getOrDefault(userId, Set.of());
     }
 
+    public Set<Integer> getRecomendation(int userId){
+
+        Set<Integer> friends = getFriends(userId);
+        Set<Integer> recomendation = new HashSet<>();
+
+        for(Integer friend : friends){
+            Set<Integer> friendsOfFriend = getFriends(friend);
+
+            for(Integer recomends : friendsOfFriend){
+                if(recomends != userId && !friends.contains(recomends)){
+                    recomendation.add(recomends);
+                }
+            }
+
+        }
+
+        return recomendation;
+    }
+
     public void exportGraph(){
 
         List<Relation> relations = new ArrayList<>();
